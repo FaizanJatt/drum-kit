@@ -7,39 +7,39 @@
 </head>
 <body>
   <div class="keys">
-    <div data-key="65" class="key">
+    <div data-key="65" class="key" onclick="onClick(this)">
       <kbd>A</kbd>
       <span class="sound">clap</span>
     </div>
-    <div data-key="83" class="key">
+    <div data-key="83" class="key" onclick="onClick(this)">
       <kbd>S</kbd>
       <span class="sound">hihat</span>
     </div>
-    <div data-key="68" class="key">
+    <div data-key="68" class="key" onclick="onClick(this)">
       <kbd>D</kbd>
       <span class="sound">kick</span>
     </div>
-    <div data-key="70" class="key">
+    <div data-key="70" class="key" onclick="onClick(this)">
       <kbd>F</kbd>
       <span class="sound">openhat</span>
     </div>
-    <div data-key="71" class="key">
+    <div data-key="71" class="key" onclick="onClick(this)">
       <kbd>G</kbd>
       <span class="sound">boom</span>
     </div>
-    <div data-key="72" class="key">
+    <div data-key="72" class="key" onclick="onClick(this)">
       <kbd>H</kbd>
       <span class="sound">ride</span>
     </div>
-    <div data-key="74" class="key">
+    <div data-key="74" class="key" onclick="onClick(this)">
       <kbd>J</kbd>
       <span class="sound">snare</span>
     </div>
-    <div data-key="75" class="key">
+    <div data-key="75" class="key" onclick="onClick(this)">
       <kbd>K</kbd>
       <span class="sound">tom</span>
     </div>
-    <div data-key="76" class="key">
+    <div data-key="76" class="key" onclick="onClick(this)">
       <kbd>L</kbd>
       <span class="sound">tink</span>
     </div>
@@ -63,6 +63,10 @@
     audio.currentTime = 0;
     audio.play();
     key.classList.add("playing");
+
+    setTimeout(() => {
+      key.classList.remove("playing")
+    }, 300)
   }
   
   function removeTransition(e){
@@ -74,6 +78,12 @@
   const keys = document.querySelectorAll(".key");
   keys.forEach(key => key.addEventListener("transitionend", removeTransition));
   window.addEventListener('keydown', playSound);
+
+  function onClick(element) {
+    const key = element.getAttribute('data-key')
+    playSound({keyCode: key})
+  }
+
   </script>
   
 </body>
